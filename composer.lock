@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "831c58c7fd6c56f3f71342a6e1e79b25",
+    "content-hash": "4801f60f3d2e840eb21748cca7e17816",
     "packages": [
         {
-            "name": "mysasspackage/type",
-            "version": "v0.0.3",
+            "name": "mysaaspackage/type",
+            "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MySaasPackage/Type.git",
-                "reference": "5b3a007402dcb43a079b28ac097ddaf008abaa65"
+                "reference": "f404b42cafd5f242406754cdf77a25ccd706e411"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/MySaasPackage/Type/zipball/5b3a007402dcb43a079b28ac097ddaf008abaa65",
-                "reference": "5b3a007402dcb43a079b28ac097ddaf008abaa65",
+                "url": "https://api.github.com/repos/MySaasPackage/Type/zipball/f404b42cafd5f242406754cdf77a25ccd706e411",
+                "reference": "f404b42cafd5f242406754cdf77a25ccd706e411",
                 "shasum": ""
             },
             "require": {
@@ -27,6 +27,7 @@
                 "friendsofphp/php-cs-fixer": "^3.19",
                 "phpunit/phpunit": "^10"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -46,9 +47,9 @@
             "description": "Provides a set of value objects",
             "support": {
                 "issues": "https://github.com/MySaasPackage/Type/issues",
-                "source": "https://github.com/MySaasPackage/Type/tree/v0.0.3"
+                "source": "https://github.com/MySaasPackage/Type/tree/v0.0.1"
             },
-            "time": "2023-07-24T18:40:12+00:00"
+            "time": "2023-07-24T21:34:50+00:00"
         }
     ],
     "packages-dev": [
