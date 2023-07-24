@@ -8,7 +8,7 @@ use DateTimeZone;
 use DateTimeImmutable;
 use InvalidArgumentException;
 
-readonly class Converter
+class Converter
 {
     public function __construct(
         protected readonly array $data
@@ -36,6 +36,13 @@ readonly class Converter
         }
 
         throw new InvalidArgumentException(sprintf('Key %s not found', $key));
+    }
+
+    public function add(string $key, mixed $value): self
+    {
+        $this->data[$key] = $value;
+
+        return $this;
     }
 
     public function string(string $key): string

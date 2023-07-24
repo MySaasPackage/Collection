@@ -7,7 +7,7 @@ namespace MySaasPackage\Support;
 use Countable;
 use InvalidArgumentException;
 
-readonly class Collection implements Countable, Arrayable
+class Collection implements Countable, Arrayable
 {
     public function __construct(
         protected array $items = [],
