@@ -4,11 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4801f60f3d2e840eb21748cca7e17816",
+    "content-hash": "d4c4b131455b0a6200f7e4d9d001adf9",
     "packages": [
         {
             "name": "mysaaspackage/type",
-            "version": "dev-main",
+            "version": "v0.0.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/MySaasPackage/Type.git",
@@ -27,7 +27,6 @@
                 "friendsofphp/php-cs-fixer": "^3.19",
                 "phpunit/phpunit": "^10"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
