@@ -28,6 +28,19 @@ class Collection implements Countable, Arrayable
         throw new InvalidArgumentException(sprintf('Item must be of type %s', $this->type));
     }
 
+    public function get(int $index): mixed
+    {
+        return $this->items[$index] ?? null;
+    }
+
+    public function set(int $index, mixed $item): self
+    {
+        $this->guardType($item);
+        $this->items[$index] = $item;
+
+        return $this;
+    }
+
     public function count(): int
     {
         return count($this->items);
@@ -82,6 +95,26 @@ class Collection implements Countable, Arrayable
         $this->items = [];
 
         return $this;
+    }
+
+    public function isGreaterThan(int $count): bool
+    {
+        return $this->count() > $count;
+    }
+
+    public function isLessThan(int $count): bool
+    {
+        return $this->count() < $count;
+    }
+
+    public function isGreaterThanOrEqualTo(int $count): bool
+    {
+        return $this->count() >= $count;
+    }
+
+    public function isLessThanOrEqualTo(int $count): bool
+    {
+        return $this->count() <= $count;
     }
 
     public function map(callable $callback): self
