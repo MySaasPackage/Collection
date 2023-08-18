@@ -157,20 +157,6 @@ class Converter
         return null;
     }
 
-    public function identity(string $key): Identity
-    {
-        return new Identity($this->int($key));
-    }
-
-    public function identityOrNull(string $key): Identity|null
-    {
-        if ($this->has($key)) {
-            return $this->identity($key);
-        }
-
-        return null;
-    }
-
     public function uuid(string $key): Uuid
     {
         return new Uuid($this->string($key));
