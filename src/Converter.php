@@ -213,15 +213,15 @@ class Converter
         return null;
     }
 
-    public function hash(string $key): Hash
+    public function passwordHash(string $key): PasswordHash
     {
-        return new Hash($this->string($key));
+        return new PasswordHash($this->string($key));
     }
 
-    public function hashOrNull(string $key): Hash|null
+    public function passwordHashOrNull(string $key): PasswordHash|null
     {
         if ($this->has($key)) {
-            return $this->hash($key);
+            return $this->passwordHash($key);
         }
 
         return null;
