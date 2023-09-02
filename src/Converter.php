@@ -11,18 +11,26 @@ use InvalidArgumentException;
 class Converter
 {
     public function __construct(
-        protected readonly array $data
+        protected readonly object|array $data
     ) {
     }
 
     public function has(string $key): bool
     {
-        return isset($this->data[$key]);
+        if (is_object($this->data)) {
+            return property_exists($this->data, $key);
+        }
+
+        return array_key_exists($key, $this->data);
     }
 
     public function getOrNull(string $key): mixed
     {
-        if ($this->has($key)) {
+        if (is_object($this->data) && property_exists($this->data, $key)) {
+            return $this->data->{$key};
+        }
+
+        if (is_array($this->data) && array_key_exists($key, $this->data)) {
             return $this->data[$key];
         }
 
@@ -32,17 +40,10 @@ class Converter
     public function getOrThrow(string $key): mixed
     {
         if ($this->has($key)) {
-            return $this->data[$key];
+            return $this->getOrNull($key);
         }
 
-        throw new InvalidArgumentException(sprintf('Key %s not found', $key));
-    }
-
-    public function add(string $key, mixed $value): self
-    {
-        $this->data[$key] = $value;
-
-        return $this;
+        throw new InvalidArgumentException(sprintf('Property or Key %s not found', $key));
     }
 
     public function string(string $key): string
