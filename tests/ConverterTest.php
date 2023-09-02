@@ -13,6 +13,8 @@ class ConverterTest extends TestCase
     public function testConverterSuccess()
     {
         $converter = new Converter([
+            'id' => 1,
+            'height' => 1.75,
             'uuid' => '00000000-0000-0000-0000-000000000000',
             'firstName' => 'John',
             'lastName' => 'Doe',
@@ -21,6 +23,8 @@ class ConverterTest extends TestCase
             'createdAt' => '2020-01-01 00:00:00',
         ]);
 
+        $this->assertEquals(1, $converter->int('id'));
+        $this->assertEquals(1.75, $converter->float('height'));
         $this->assertEquals('John', $converter->string('firstName'));
         $this->assertEquals('Doe', $converter->string('lastName'));
         $this->assertEquals(new Uuid('00000000-0000-0000-0000-000000000000'), $converter->uuid('uuid'));
@@ -32,6 +36,8 @@ class ConverterTest extends TestCase
     public function testConverterWithNullValues()
     {
         $converter = new Converter([
+            'id' => null,
+            'height' => null,
             'uuid' => null,
             'firstName' => 'John',
             'lastName' => 'Doe',
@@ -40,6 +46,8 @@ class ConverterTest extends TestCase
             'createdAt' => null,
         ]);
 
+        $this->assertEquals(null, $converter->int('id'));
+        $this->assertEquals(null, $converter->float('height'));
         $this->assertEquals('John', $converter->string('firstName'));
         $this->assertEquals('Doe', $converter->string('lastName'));
         $this->assertEquals(null, $converter->uuidOrNull('uuid'));
