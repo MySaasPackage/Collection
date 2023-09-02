@@ -57,25 +57,29 @@ class Converter
 
     public function stringOrNull(string $key): string|null
     {
-        if ($this->has($key)) {
-            return $this->string($key);
+        $stringOrNull = $this->getOrNull($key);
+
+        if (null === $stringOrNull) {
+            return null;
         }
 
-        return null;
+        return strval($stringOrNull);
     }
 
     public function int(string $key): int
     {
-        return $this->getOrThrow($key);
+        return intval($this->getOrThrow($key));
     }
 
     public function intOrNull(string $key): int|null
     {
-        if ($this->has($key)) {
-            return $this->int($key);
+        $intOrNull = $this->getOrNull($key);
+
+        if (null === $intOrNull) {
+            return null;
         }
 
-        return null;
+        return intval($intOrNull);
     }
 
     public function float(string $key): float
@@ -85,11 +89,13 @@ class Converter
 
     public function floatOrNull(string $key): float|null
     {
-        if ($this->has($key)) {
-            return $this->float($key);
+        $floatOrNull = $this->getOrNull($key);
+
+        if (null === $floatOrNull) {
+            return null;
         }
 
-        return null;
+        return floatval($floatOrNull);
     }
 
     public function double(string $key): float
