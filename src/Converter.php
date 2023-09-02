@@ -66,7 +66,7 @@ class Converter
 
     public function int(string $key): int
     {
-        return intval($this->getOrThrow($key));
+        return $this->getOrThrow($key);
     }
 
     public function intOrNull(string $key): int|null
@@ -99,11 +99,13 @@ class Converter
 
     public function doubleOrNull(string $key): float|null
     {
-        if ($this->has($key)) {
-            return $this->double($key);
+        $doubleOrNull = $this->getOrNull($key);
+
+        if (null === $doubleOrNull) {
+            return null;
         }
 
-        return null;
+        return doubleval($doubleOrNull);
     }
 
     public function bool(string $key): bool
@@ -113,39 +115,45 @@ class Converter
 
     public function boolOrNull(string $key): ?bool
     {
-        if ($this->has($key)) {
-            $this->bool($key);
+        $boolOrNull = $this->getOrNull($key);
+
+        if (null === $boolOrNull) {
+            return null;
         }
 
-        return null;
+        return boolval($boolOrNull);
     }
 
     public function datetime(string $key): DateTimeImmutable
     {
-        return new DateTimeImmutable($this->string($key));
+        return new DateTimeImmutable($this->getOrThrow($key));
     }
 
     public function datetimeOrNull(string $key): DateTimeImmutable|null
     {
-        if ($this->has($key)) {
-            return $this->datetime($key);
+        $datetimeOrNull = $this->getOrNull($key);
+
+        if (null === $datetimeOrNull) {
+            return null;
         }
 
-        return null;
+        return new DateTimeImmutable($datetimeOrNull);
     }
 
     public function timezone(string $key): DateTimeZone
     {
-        return new DateTimeZone($this->string($key));
+        return new DateTimeZone($this->getOrThrow($key));
     }
 
     public function timezoneOrNull(string $key): DateTimeZone|null
     {
-        if ($this->has($key)) {
-            return $this->timezone($key);
+        $timezoneOrNull = $this->getOrNull($key);
+
+        if (null === $timezoneOrNull) {
+            return null;
         }
 
-        return null;
+        return new DateTimeZone($timezoneOrNull);
     }
 
     public function converter(string $key): Converter
@@ -155,80 +163,92 @@ class Converter
 
     public function converterOrNull(string $key): Converter|null
     {
-        if ($this->has($key)) {
-            return $this->converter($key);
+        $childrenOrNull = $this->getOrNull($key);
+
+        if (null === $childrenOrNull) {
+            return null;
         }
 
-        return null;
+        return new Converter($childrenOrNull);
     }
 
     public function uuid(string $key): Uuid
     {
-        return new Uuid($this->string($key));
+        return new Uuid($this->getOrThrow($key));
     }
 
     public function uuidOrNull(string $key): Uuid|null
     {
-        if ($this->has($key)) {
-            return $this->uuid($key);
+        $uuidOrNull = $this->getOrNull($key);
+
+        if (null === $uuidOrNull) {
+            return null;
         }
 
-        return null;
+        return new Uuid($uuidOrNull);
     }
 
     public function email(string $key): Email
     {
-        return new Email($this->string($key));
+        return new Email($this->getOrThrow($key));
     }
 
     public function emailOrNull(string $key): Email|null
     {
-        if ($this->has($key)) {
-            return $this->email($key);
+        $emailOrNull = $this->getOrNull($key);
+
+        if (null === $emailOrNull) {
+            return null;
         }
 
-        return null;
+        return new Email($emailOrNull);
     }
 
     public function phone(string $key): Phone
     {
-        return new Phone($this->string($key));
+        return new Phone($this->getOrThrow($key));
     }
 
     public function phoneOrNull(string $key): Phone|null
     {
-        if ($this->has($key)) {
-            return $this->phone($key);
+        $phoneOrNull = $this->getOrNull($key);
+
+        if (null === $phoneOrNull) {
+            return null;
         }
 
-        return null;
+        return new Phone($phoneOrNull);
     }
 
     public function password(string $key): Password
     {
-        return new Password($this->string($key));
+        return new Password($this->getOrThrow($key));
     }
 
     public function passwordOrNull(string $key): Password|null
     {
-        if ($this->has($key)) {
-            return $this->password($key);
+        $passwordOrNull = $this->getOrNull($key);
+
+        if (null === $passwordOrNull) {
+            return null;
         }
 
-        return null;
+        return new Password($passwordOrNull);
     }
 
     public function passwordHash(string $key): PasswordHash
     {
-        return new PasswordHash($this->string($key));
+        return new PasswordHash($this->getOrThrow($key));
     }
 
     public function passwordHashOrNull(string $key): PasswordHash|null
     {
-        if ($this->has($key)) {
-            return $this->passwordHash($key);
+        $passwordHashOrNull = $this->getOrNull($key);
+
+        if (null === $passwordHashOrNull) {
+            return null;
         }
 
-        return null;
+        return new PasswordHash($passwordHashOrNull);
     }
 }
