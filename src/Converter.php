@@ -17,11 +17,15 @@ class Converter
 
     public function has(string $key): bool
     {
-        if (is_object($this->data)) {
-            return property_exists($this->data, $key);
+        if (is_object($this->data) && property_exists($this->data, $key)) {
+            return true;
         }
 
-        return array_key_exists($key, $this->data);
+        if (is_array($this->data) && array_key_exists($key, $this->data)) {
+            return true;
+        }
+
+        return false;
     }
 
     public function getOrNull(string $key): mixed
